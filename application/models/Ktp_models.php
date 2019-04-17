@@ -76,11 +76,11 @@ class Ktp_models extends CI_Model {
 			return $this->db->get_where('biodata_ktp', ['biodata_nik' => $id])->row();
 		}
 	}
-	public function callback_tombol($value){
+	public function callback_tombol($value,$id){
             if ($value == 'Gagal Seleksi') {
-                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="$1"><i class="fa fa-folder-open"></i></a>';
+                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="'.$id.'"><i class="fa fa-folder-open"></i></a>';
             }else{
-                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="$1"><i class="fa fa-folder-open"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-warning btn-sm" data-id="$1"><i class="fa fa-employee"></i></a>';
+                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="'.$id.'"><i class="fa fa-folder-open"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-warning btn-sm" data-id="'.$id.'"><i class="fa fa-employee"></i></a>';
             }
             return $result;
         }

@@ -4,6 +4,10 @@
         vertical-align: top;
         border-top: 1px solid #dee2e6;
     }
+    .modal-content {
+      height: 700px !important;
+      max-height: calc(100vh - 50px) !important;
+    }
 </style>
 <div class="row" style="overflow-y:auto;">
     <div class="card card-primary col-md-4">
@@ -133,6 +137,15 @@
                 <li class="nav-item"><a class="nav-link active" href="#domisili" data-toggle="tab">Domisili</a></li>
                 <li class="nav-item"><a class="nav-link" href="#referensi" data-toggle="tab">Referensi</a></li>
                 <li class="nav-item"><a class="nav-link" href="#sao" data-toggle="tab">Susunan Anak</a></li>
+                <li class="nav-item"><a class="nav-link" href="#kehamilan" data-toggle="tab">Kehamilan</a></li>
+                <li class="nav-item"><a class="nav-link" href="#darurat" data-toggle="tab">Darurat</a></li>
+                <li class="nav-item"><a class="nav-link" href="#ortu" data-toggle="tab">Orang Tua</a></li>
+                <li class="nav-item"><a class="nav-link" href="#wali" data-toggle="tab">Wali</a></li>
+                <li class="nav-item"><a class="nav-link" href="#keluarga" data-toggle="tab">Keluarga</a></li>
+                <li class="nav-item"><a class="nav-link" href="#minat" data-toggle="tab">Minat</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pengalaman" data-toggle="tab">Pengalaman</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pendidikan" data-toggle="tab">Pendidikan</a></li>
+                <li class="nav-item"><a class="nav-link" href="#interview" data-toggle="tab">Interview</a></li>
             </ul>
         </div><!-- /.card-header -->
         <div class="card-body">
@@ -163,10 +176,6 @@
                     </tbody>
                 </table>
             </div>
-            <!-- susunan anak -->
-            <div class="tab-pane" id="sao">
-
-            </div>
             <!-- keluarga -->
             <div class="tab-pane" id="referensi">
                 <table class="table table-striped" width="100%">
@@ -190,13 +199,426 @@
                     </tbody>
                 </table>
             </div>
-            <!-- darurat -->
-            <div class="tab-pane" id="sao">
-
+            <!-- kehamilan -->
+            <div class="tab-pane" id="kehamilan">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="15%">Status Kehamilan</th>
+                            <th width="10%">Usia Kehamilan</th>
+                            <th width="8%">Tanggal Kehamilan</th>
+                            <th width="8%">Perkawinan Status</th>
+                            <th width="8%">Perkawinan Sejak</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:14px;">
+                            <td width="8%"><?php echo $result_kehamilan->kehamilan_status; ?></td>
+                            <td width="6%"><?php echo $result_kehamilan->kehamilan_usia; ?></td>
+                            <td width="10%"><?php echo date('d-m-Y',strtotime($result_kehamilan->kehamilan_tanggal)); ?></td>
+                            <td width="8%"><?php echo $result_kehamilan->perkawinan_status; ?></td>
+                            <td width="8%"><?php echo $result_kehamilan->perkawinan_sejak; ?></td>
+                            <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            
+            <!-- susunan anak -->
+            <div class="tab-pane" id="sao">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="15%">Nama</th>
+                            <th width="10%">Alamat</th>
+                            <th width="8%">Nomor Hp</th>
+                            <th width="8%">Pekerjaan</th>
+                            <th width="15%">Nama Pasangan</th>
+                            <th width="10%">Alamat Pasangan</th>
+                            <th width="8%">Nomor Hp Pasangan</th>
+                            <th width="8%">Pekerjaan Pasangan</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($result_sao as $sao): ?>
+                            <tr style="font-size:14px;">
+                                <td width="8%"><?php echo $sao->anak_nama; ?></td>
+                                <td width="6%"><?php echo $sao->anak_alamat; ?></td>
+                                <td width="10%"><?php echo $sao->anak_hp; ?></td>
+                                <td width="8%"><?php echo $sao->anak_pekerjaan; ?></td>
+                                <td width="8%"><?php echo $sao->pasangan_nama; ?></td>
+                                <td width="6%"><?php echo $sao->pasangan_alamat; ?></td>
+                                <td width="10%"><?php echo $sao->pasangan_hp; ?></td>
+                                <td width="8%"><?php echo $sao->pasangan_pekerjaan; ?></td>
+                                <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- darurat teman -->
+            <div class="tab-pane" id="darurat">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="3%">No</th>
+                            <th width="15%">Nama</th>
+                            <th width="10%">Alamat</th>
+                            <th width="8%">Nomor Hp</th>
+                            <th width="8%">Pekerjaan</th>
+                            <th width="15%">Bidang/jabatan</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="font-size:14px;">
+                                <td width="3%">1.</td>
+                                <td width="8%"><?php echo $result_darurat->darurat_satu_nama; ?></td>
+                                <td width="8%"><?php echo $result_darurat->darurat_satu_alamat; ?></td>
+                                <td width="8%"><?php echo $result_darurat->darurat_satu_hp; ?></td>
+                                <td width="6%"><?php echo $result_darurat->darurat_satu_pekerjaan; ?></td>
+                                <td width="10%"><?php echo $result_darurat->darurat_satu_bidang_jabatan; ?></td>
+                                <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                            <tr style="font-size:14px;">
+                                <td width="3%">2.</td>
+                                <td width="8%"><?php echo $result_darurat->darurat_dua_nama; ?></td>
+                                <td width="8%"><?php echo $result_darurat->darurat_dua_alamat; ?></td>
+                                <td width="8%"><?php echo $result_darurat->darurat_dua_hp; ?></td>
+                                <td width="6%"><?php echo $result_darurat->darurat_dua_pekerjaan; ?></td>
+                                <td width="10%"><?php echo $result_darurat->darurat_dua_bidang_jabatan; ?></td>
+                                <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- data orang tua -->
+            <div class="tab-pane" id="ortu">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="3%">No</th>
+                            <th width="15%">Nama</th>
+                            <th width="10%">Status</th>
+                            <th width="8%">Umur</th>
+                            <th width="8%">Alamat</th>
+                            <th width="8%">No Hp</th>
+                            <th width="8%">Pekerjaan</th>
+                            <th width="15%">Bidang/jabatan</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="font-size:14px;">
+                                <td width="3%">1.</td>
+                                <td width="8%"><?php echo $result_ortu->ortu_ayah_nama; ?></td>
+                                <td width="4%"><?php echo $result_ortu->ortu_ayah_status; ?></td>
+                                <td width="4%"><?php echo $result_ortu->ortu_ayah_umur; ?></td>
+                                <td width="15%"><?php echo $result_ortu->ortu_ayah_alamat; ?></td>
+                                <td width="5%"><?php echo $result_ortu->ortu_ayah_hp; ?></td>
+                                <td width="7%"><?php echo $result_ortu->ortu_ayah_pekerjaan; ?></td>
+                                <td width="7%"><?php echo $result_ortu->ortu_ayah_bidang_jabatan; ?></td>
+                                <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                            <tr style="font-size:14px;">
+                                <td width="3%">2.</td>
+                                <td width="8%"><?php echo $result_ortu->ortu_ibu_nama; ?></td>
+                                <td width="4%"><?php echo $result_ortu->ortu_ibu_status; ?></td>
+                                <td width="4%"><?php echo $result_ortu->ortu_ibu_umur; ?></td>
+                                <td width="15%"><?php echo $result_ortu->ortu_ibu_alamat; ?></td>
+                                <td width="5%"><?php echo $result_ortu->ortu_ibu_hp; ?></td>
+                                <td width="7%"><?php echo $result_ortu->ortu_ibu_pekerjaan; ?></td>
+                                <td width="7%"><?php echo $result_ortu->ortu_ibu_bidang_jabatan; ?></td>
+                                <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- wali -->
+            <div class="tab-pane" id="wali">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="3%">No</th>
+                            <th width="15%">Nama</th>
+                            <th width="8%">Umur</th>
+                            <th width="8%">Alamat</th>
+                            <th width="8%">No Hp</th>
+                            <th width="8%">Pekerjaan</th>
+                            <th width="15%">Bidang/jabatan</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            <tr style="font-size:14px;">
+                                <td width="3%">1.</td>
+                                <td width="8%"><?php echo $result_wali->wali_ayah_nama; ?></td>
+                                <td width="4%"><?php echo $result_wali->wali_ayah_umur; ?></td>
+                                <td width="15%"><?php echo $result_wali->wali_ayah_alamat; ?></td>
+                                <td width="5%"><?php echo $result_wali->wali_ayah_hp; ?></td>
+                                <td width="7%"><?php echo $result_wali->wali_ayah_pekerjaan; ?></td>
+                                <td width="7%"><?php echo $result_wali->wali_ayah_bidang_jabatan; ?></td>
+                                <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                            <tr style="font-size:14px;">
+                                <td width="3%">2.</td>
+                                <td width="8%"><?php echo $result_wali->wali_ibu_nama; ?></td>
+                                <td width="4%"><?php echo $result_wali->wali_ibu_umur; ?></td>
+                                <td width="15%"><?php echo $result_wali->wali_ibu_alamat; ?></td>
+                                <td width="5%"><?php echo $result_wali->wali_ibu_hp; ?></td>
+                                <td width="7%"><?php echo $result_wali->wali_ibu_pekerjaan; ?></td>
+                                <td width="7%"><?php echo $result_wali->wali_ibu_bidang_jabatan; ?></td>
+                                <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- keluarga -->
+            <div class="tab-pane" id="keluarga">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="15%">Nama</th>
+                            <th width="10%">No KK</th>
+                            <th width="10%">No KTP</th>
+                            <th width="8%">Jenis Kelamin</th>
+                            <th width="8%">Nomor Hp</th>
+                            <th width="15%">Tempat/Tanggal Lahir</th>
+                            <th width="10%">Pekerjaan</th>
+                            <th width="8%">Jenis Keluarga</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($result_keluarga as $keluarga): ?>
+                            <tr style="font-size:14px;">
+                                <td width="8%"><?php echo $keluarga->keluarga_nama; ?></td>
+                                <td width="6%"><?php echo $keluarga->keluarga_kk; ?></td>
+                                <td width="10%"><?php echo $keluarga->keluarga_ktp; ?></td>
+                                <td width="8%"><?php echo $keluarga->keluarga_jenis_kelamin; ?></td>
+                                <td width="8%"><?php echo $keluarga->keluarga_hp; ?></td>
+                                <td width="6%"><?php echo $keluarga->keluarga_tempat_lahir.'/'.date('d-m-Y',strtotime($keluarga->keluarga_tanggal_lahir)); ?></td>
+                                <td width="10%"><?php echo $keluarga->keluarga_pekerjaan; ?></td>
+                                <td width="10%"><?php echo $keluarga->keluarga_jenis; ?></td>
+                                <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <!-- minat kerja -->
+            <div class="tab-pane" id="minat">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="15%">Tujuan Kerja</th>
+                            <th width="10%">Upah Kerja</th>
+                            <th width="8%">Keahlian</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:14px;">
+                            <td width="8%"><?php echo $result_minat->minat_tujuan; ?></td>
+                            <td width="6%"><?php echo $result_minat->minat_upah; ?></td>
+                            <td width="10%"><?php echo $result_minat->minat_keahlian; ?></td>
+                            <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="pengalaman">
+                <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> tambah</button>
+                <table class="table table-striped" width="100%">
+
+                    <thead>
+                        <tr>
+                            <th width="10%">Pt</th>
+                            <th width="15%">Mulai bekerja</th>
+                            <th width="10%">Alasan Berhenti</th>
+                            <th width="10%">Pengalaman Upah</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <body>
+                        <?php foreach ($result_pengalaman as $result): ?>
+                            <tr>
+                                <td width="10%"><?php echo $result->pengalaman_perusahaan; ?></td>
+                                <td width="15%"><?php echo $result->pengalaman_mulai_kerja.' s/d '.$result->pengalaman_akhir_kerja ?></td>
+                                <td width="10%"><?php echo $result->pengalaman_alasan_berhenti ?></td>
+                                <td width="10%"><?php echo $result->pengalaman_upah; ?></td>
+                                <td>
+                                    <a href="<?php echo base_url('interview/pengalaman/update/'.$this->uri->segment(4).'/'.$result->pengalaman_id); ?>" class="btn btn-success btn-sm"><i class="fa fa-pencil"></i></a>
+                                    <a href="<?php echo base_url('interview/pengalaman/hapus/'.$this->uri->segment(4).'/'.$result->pengalaman_id); ?>" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </body>
+                </table>   
+            </div>
+            <!-- //pendidikan -->
+            <div class="tab-pane" id="pendidikan">
+                <table id="pendidikan" class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="15%">Nama Universitas</th>
+                            <th width="10%">Fakultas/Jurusan</th>
+                            <th width="8%">Sarjana</th>
+                            <th width="10%">Kota Universitas</th>
+                            <th width="8%">Kuliah Mulai</th>
+                            <th width="8%">Total IPK</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:14px;">
+                            <td width="8%"><?php echo $result_pendidikan->sarjana_nama; ?></td>
+                            <td width="6%"><?php echo $result_pendidikan->sarjana_fakultas.'/'.$result_pendidikan->sarjana_jurusan; ?></td>
+                            <td width="6%"><?php echo $result_pendidikan->sarjana_jenis; ?></td>
+                            <td width="6%"><?php echo $result_pendidikan->sarjana_kota; ?></td>
+                            <td width="10%"><?php echo $result_pendidikan->sarjana_mulai.' - '.$result_pendidikan->sarjana_akhir; ?></td>
+                            <td width="6%"><?php echo $result_pendidikan->sarjana_ipk; ?></td>
+                            <td width="5%">
+                                <button class="btn btn-primary btn-sm" id="btn_detail" data-id="<?php echo $result_pendidikan->pendidikan_nik; ?>"><i class="fa fa-info"></i></button>
+                                <button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- interview -->
+            <div class="tab-pane" id="interview">
+                <table class="table table-striped" width="100%">
+                    <thead>
+                        <tr>
+                            <th width="8%">Tanggal Interview</th>
+                            <th width="6%">Status Interview</th>
+                            <th width="4%">Nomor ADM</th>
+                            <th width="8%">Cabang Interview</th>
+                            <th width="8%">Tanggal input</th>
+                            <th width="8%">Keterangan Interview</th>
+                            <th width="5%">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="font-size:14px;">
+                            <td width="8%"><?php echo date('d-m-Y',strtotime($result_interview->interview_tanggal)); ?></td>
+                            <td width="6%"><?php echo $result_interview->interview_status; ?></td>
+                            <td width="4%"><?php echo $result_interview->nomor_adm; ?></td>
+                            <td width="8%"><?php echo $result_interview->interview_cabang; ?></td>
+                            <td width="6%"><?php echo date('d-m-Y',strtotime($result_interview->interview_tanggal_input)); ?></td>
+                            <td width="15%"><?php echo $result_interview->interview_keterangan; ?></td>
+                            <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <!-- /.tab-pane -->
         </div>
     <!-- /.tab-content -->
     </div><!-- /.card-body -->
 </div>
+<!-- start modal -->
+<div class="modal fade bd-example-modal-lg" id="modal_pendidikan" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content modal__content">
+      <div class="modal-header modal__header">
+        <h5 class="modal-title" id="exampleModalLabel">Riwayat Pendidikan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body table-responsive">
+            <table class="table table-striped">
+                <tr>
+                    <td width="30%">Riwayat Pendidikan SD</td>
+                    <td>:</td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Nama Sekolah</td>
+                    <td><?php echo $result_pendidikan->sd_nama; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Kota</td>
+                    <td><?php echo $result_pendidikan->sd_kota; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Mulai Sekolah</td>
+                    <td><?php echo $result_pendidikan->sd_mulai.' sampai '.$result_pendidikan->sd_akhir; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%">Riwayat Pendidikan SMP</td>
+                    <td>:</td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Nama Sekolah</td>
+                    <td><?php echo $result_pendidikan->smp_nama; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Kota</td>
+                    <td><?php echo $result_pendidikan->smp_kota; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Mulai Sekolah</td>
+                    <td><?php echo $result_pendidikan->smp_mulai.' sampai '.$result_pendidikan->smp_akhir; ?></td>
+                </tr>
+                 <tr>
+                    <td width="30%">Riwayat Pendidikan SMA</td>
+                    <td>:</td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Nama Sekolah</td>
+                    <td><?php echo $result_pendidikan->sma_nama; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Kota</td>
+                    <td><?php echo $result_pendidikan->sma_kota; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Mulai Sekolah</td>
+                    <td><?php echo $result_pendidikan->sma_mulai.' sampai '.$result_pendidikan->sma_akhir; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%">Riwayat Pendidikan Sarjana</td>
+                    <td>:</td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Nama Universitas</td>
+                    <td><?php echo $result_pendidikan->sarjana_nama; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Fakultas/Jurusan</td>
+                    <td><?php echo $result_pendidikan->sarjana_fakultas.'/'.$result_pendidikan->sarjana_jurusan; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Sarjana</td>
+                    <td><?php echo $result_pendidikan->sarjana_jenis; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Kota</td>
+                    <td><?php echo $result_pendidikan->sarjana_kota; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">IPK</td>
+                    <td><?php echo $result_pendidikan->sarjana_ipk; ?></td>
+                </tr>
+                <tr>
+                    <td width="30%" style="padding-left: 80px;">Mulai Kuliah</td>
+                    <td><?php echo $result_pendidikan->sarjana_mulai.' sampai '.$result_pendidikan->sarjana_akhir; ?></td>
+                </tr>
+            </table>
+      </div>
+      <div class="modal-footer modal__footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end modal -->
+<script>
+    $(document).on('click','#btn_detail',function () {
+        $('#modal_pendidikan').modal('show');
+        var id = $(this).data('id');
+    })
+</script>

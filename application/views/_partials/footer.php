@@ -1,4 +1,4 @@
-<footer class="main-footer fixed">
+<footer class="main-footer fixed" style="z-index: 11;">
     <!-- To the right -->
     <div class="float-right d-sm-none d-md-block">
       <strong>v.1.0</strong>

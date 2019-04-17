@@ -28,9 +28,9 @@ class Keluarga_models extends CI_Model {
 	public function getKeluargaData($id=null)
 	{
 		if (empty($id)) {
-			return $this->db->get('biodata_keluarga')->result_array();
+			return $this->db->get('biodata_keluarga');
 		}else{
-			return $this->db->get_where('biodata_keluarga', ['keluarga_nik' => $id])->row();
+			return $this->db->get_where('biodata_keluarga', ['keluarga_nik' => $id]);
 		}
 	}
 }

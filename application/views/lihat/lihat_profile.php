@@ -47,7 +47,7 @@
             <div class="card-header p-2">
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a class="nav-link active" href="#ktp" data-toggle="tab">ktp</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
+                    <!-- <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li> -->
                 </ul>
             </div><!-- /.card-header -->
             <div class="card-body">
@@ -120,10 +120,10 @@
                         </tr>
                     </table>
                 </div>
-
+<!-- 
                 <div class="tab-pane" id="settings">
 
-                </div>
+                </div> -->
                 <!-- /.tab-pane -->
             </div>
         <!-- /.tab-content -->

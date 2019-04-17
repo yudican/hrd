@@ -14,7 +14,7 @@
   
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link href="<?php echo base_url('asset/') ?>dist/css/jquery.dataTables.min.css" rel="stylesheet">
-  
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <style>
   .fixed{
     left: 0;

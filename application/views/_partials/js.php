@@ -12,7 +12,7 @@
 
 <script src="<?php echo base_url('asset/'); ?>dist/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url('asset/'); ?>plugins/datatables/dataTables.bootstrap4.js"></script>
-<script language="javascript">
+<script>
     function hanyaAngka(e, decimal) {
     var key;
     var keychar;

@@ -65,6 +65,7 @@
        $('#btn_tambah').on('click',function(){
             $('#modal_title').text('Input Tingkatan Upah');
             $('#tingkatan').modal('show');
+            $('.modal-footer').find('#simpan').replaceWith('<button id="simpan" type="button" class="btn btn-primary ">Simpan</button>');
         });
        $('.modal-footer').on('click','#simpan',function(){
             var id = $(this).data('id');
@@ -134,6 +135,7 @@
                   table.DataTable().ajax.reload();
                   toastr.success('Successfully Deleted Post!', 'Success Alert', {timeOut: 5000});
                   $('#modal_hapus').modal('hide');
+                  $('.modal-footer').find('#hapus').replaceWith('<button id="hapus" type="button" class="btn btn-primary ">Ya, hapus</button>');
               },
               error:function(){
                 toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});

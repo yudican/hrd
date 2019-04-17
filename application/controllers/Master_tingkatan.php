@@ -27,6 +27,7 @@ class Master_tingkatan extends CI_Controller {
         $this->datatables->select('tingkatan_id,tingkatan_nama,tingkatan_jumlah')
                 ->unset_column('tingkatan_id')
                 ->from('tingkatan_upah')
+                ->edit_column('tingkatan_jumlah','$1','format_uang(tingkatan_jumlah)')
                 ->add_column('nomor','1')
                 ->add_column('actions', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-sm" data-id="$1" data-nama="$2" data-jumlah="$3"><i class="fa fa-edit"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-sm" data-id="$1"><i class="fa fa-trash"></i></a>','tingkatan_id,tingkatan_nama,tingkatan_jumlah,nomor,actions');
 

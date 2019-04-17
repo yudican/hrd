@@ -136,4 +136,14 @@ if ( ! function_exists('nomor_adm')){
             return $resultFoto;
         }
     }
+    if ( ! function_exists('statusGagal')){
+        function statusGagal($value){
+            if ($value == 'Gagal Seleksi') {
+                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="$1"><i class="fa fa-folder-open"></i></a>';
+            }else{
+                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="$1"><i class="fa fa-folder-open"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-warning btn-sm" data-id="$1"><i class="fa fa-employee"></i></a>';
+            }
+            return $result;
+        }
+    }
 }

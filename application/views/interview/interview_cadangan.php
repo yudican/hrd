@@ -67,7 +67,8 @@
             //Set column definition initialisation properties.
             "columnDefs": [
             { 
-                "targets": [ 0 ], //first column / numbering column
+                // "targets": [ 0 ], //first column / numbering column
+                
                 "orderable": false, //set not orderable
             },
             ],

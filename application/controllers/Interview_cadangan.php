@@ -31,7 +31,7 @@ class Interview_cadangan extends CI_Controller {
 
     public function getInterview()
     {
-         $this->datatables->select('biodata_nik,biodata_nama,nomor_adm,interview_status,interview_tanggal,interview_keterangan,profil_foto');
+         $this->datatables->select('biodata_nik,biodata_nama,nomor_adm,interview_status,interview_tanggal,interview_keterangan,profil_foto,biodata_kelamin');
          $this->datatables->unset_column('interview_nik');
          if ($this->input->post('status') == 'Gagal Seleksi' && $this->input->post('filter')) {
             $this->datatables->like('interview_status', 'Gagal Seleksi');
@@ -59,7 +59,8 @@ class Interview_cadangan extends CI_Controller {
          $this->datatables->from('biodata_ktp');
          $this->datatables->edit_column('interview_tanggal','$1','tgl_indo(interview_tanggal)');
          $this->datatables->edit_column('profil_foto','$1','getFoto(profil_foto)');
-         $this->datatables->add_column('actions', '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="$1"><i class="fa fa-folder-open"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-sm" data-id="$1"><i class="fa fa-trash"></i></a>','biodata_nik,biodata_nama,nomor_adm,interview_status,interview_tanggal,interview_keterangan,actions');
+         $this->datatables->edit_column('biodata_kelamin','$1','statusGagal(interview_status)');
+         // $this->datatables->add_column('actions', 'statusGagal(interview_status)','interview_status');
  
         echo $this->datatables->generate('json','');
     }

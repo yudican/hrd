@@ -51,9 +51,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('master/bagian'); ?>" class="nav-link <?php echo active_menu('master','bagian'); ?>">
+                <a href="<?php echo base_url('master/tingkatan'); ?>" class="nav-link <?php echo active_menu('master','tingkatan'); ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Master Cabang</p>
+                  <p>Master Tingkatan Upah</p>
                 </a>
               </li>
               <li class="nav-item">

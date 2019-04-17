@@ -10,6 +10,10 @@ $route['master/upah/input'] = 'master_upah/input_upah';
 $route['master/upah'] = 'master_upah/data_upah';
 $route['master/cabang'] = 'master_cabang/data_cabang';
 $route['master/upah/update/(:num)'] = 'master_upah/update/$1';
+$route['master/tingkatan'] = 'master_tingkatan/data_tingkatan';
+$route['master/tingkatan/update/(:num)'] = 'master_tingkatan/update/$1';
+$route['master/tingkatan/hapus/(:num)'] = 'master_tingkatan/hapus/$1';
+$route['master/tingkatan/input'] = 'master_tingkatan/input';
 //interview route
 //ktp
 $route['interview/ktp/input'] = 'biodata_ktp/input';

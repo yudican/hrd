@@ -23,11 +23,11 @@ class Master_Jabatan extends CI_Controller {
     }
     public function getJabatan()
     {
-        $this->datatables->select('jabatan_id,jabatan_nama')
+        $this->datatables->select('jabatan_id,jabatan_nama,jabatan_kode')
                 ->unset_column('jabatan_id')
                 ->from('jabatan')
                 ->add_column('nomor','1')
-                ->add_column('actions', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-sm" data-id="$1" data-nama="$2" data-jumlah="$3"><i class="fa fa-edit"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-sm" data-id="$1"><i class="fa fa-trash"></i></a>','jabatan_id,jabatan_nama,nomor,actions');
+                ->add_column('actions', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-sm" data-id="$1" data-nama="$2" data-kode="$3"><i class="fa fa-edit"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-sm" data-id="$1"><i class="fa fa-trash"></i></a>','jabatan_id,jabatan_nama,jabatan_kode,nomor,actions');
 
         echo $this->datatables->generate('json','');
     }
@@ -46,7 +46,8 @@ class Master_Jabatan extends CI_Controller {
         }else{
             $data['success'] = true;
              $request = [
-             	'jabatan_nama' => $this->input->post('jabatan_nama',true)
+             	'jabatan_nama' => $this->input->post('jabatan_nama',true),
+                'jabatan_kode' => $this->input->post('jabatan_kode',true)
              ];
              $this->db->insert('jabatan', $request);
         }
@@ -68,7 +69,8 @@ class Master_Jabatan extends CI_Controller {
         }else{
             $data['success'] = true;
              $request = [
-             	'jabatan_nama' => $this->input->post('jabatan_nama',true)
+             	'jabatan_nama' => $this->input->post('jabatan_nama',true),
+                'jabatan_kode' => $this->input->post('jabatan_kode',true)
              ];
              $this->db->update('jabatan', $request,['jabatan_id' => $id]);
         }

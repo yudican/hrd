@@ -23,136 +23,7 @@
     <!-- /.card-body -->
 </div>
 
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="<?php echo base_url('asset/'); ?>dist/js/toastr.min.js"></script> 
-<script type="text/javascript">
-   $(document).ready(function () {
-       var table = $("#tabel_tingkatan").dataTable({
-           "bProcessing": false,
-           "bServerSide": true,
-           "sAjaxSource": "<?php echo site_url('master_tingkatan/getTingkatan'); ?>",
-           "fnRowCallback": function( nRow, aoData, iDisplayIndex ) {
-               var index = iDisplayIndex +1;
-               $('td:eq(0)',nRow).html(index);
-               return nRow;
-            },
-           "columns": [
-               { "data": "nomor",orderable:false,searchable:false },
-               { "data": "tingkatan_nama", "name": "tingkatan_upah.tingkatan_nama" },
-               { "data": "tingkatan_jumlah", "name": "tingkatan_upah.tingkatan_jumlah" },
-               { "data": "actions",orderable:false,searchable:false}
-               
-               
-           ],
-           "bJQueryUI": true,
-           "sPaginationType": "full_numbers",
-           "iDisplayStart ": 20,
-           "fnServerData": function (sSource, aoData, fnCallback)
-           {
-               $.ajax
-                       ({
-                           "dataType": "json",
-                           "type": "POST",
-                           "url": sSource,
-                           "data": aoData,
-                           "success": fnCallback
-                       });
-           },
-           "order": [
-               [0, "asc"]
-           ]
-       });
-       $('#btn_tambah').on('click',function(){
-            $('#modal_title').text('Input Tingkatan Upah');
-            $('#tingkatan').modal('show');
-            $('#form_tingkatan')[0].reset();
-            $('.modal-footer').find('#simpan').replaceWith('<button id="simpan" type="button" class="btn btn-primary ">Simpan</button>');
-        });
-       $('.modal-footer').on('click','#simpan',function(){
-            var id = $(this).data('id');
-            var url;
-            if (id) {
-              url = '<?php echo base_url('master/tingkatan/update/') ?>'+id
-            }else{
-              url = '<?php echo base_url('master/tingkatan/input') ?>'
-            }
-            $.ajax({
-              url:url,
-              type:'post',
-              data:$('#form_tingkatan').serialize(),
-              dataType:'json',
-              success:function(res){
-                if (res.success == true) {
-                  table.DataTable().ajax.reload();
-                  toastr.success('Successfully Inserted Post!', 'Success Alert', {timeOut: 5000});
-                  $('#tingkatan').modal('hide');
-                  $('#form_tingkatan')[0].reset();
-                  $('#tingkatan_nama').removeClass('is-valid').removeClass('is-invalid');
-                  $('#tingkatan_jumlah').removeClass('is-valid').removeClass('is-invalid');
 
-                  $('.text-danger').remove();
-
-                }else{
-                  $.each(res.message,function(key,value) {
-                    $('#' + key).removeClass('is-invalid')
-                    $('#' + key).addClass(value.length > 0 ? 'is-invalid':'is-valid');
-                    var show = $('#' + key);
-                    show.closest('.form-group')
-                    
-                    // .addClass('is-valid')
-                    .removeClass(value.length > 0 ? 'text-danger':'')
-                    .find('.text-danger').remove()
-                    show.after(value);
-                  })
-                }
-              },
-              error:function(){
-                toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
-              }
-            })
-        });
-        $('#tabel_tingkatan').on('click','.edit_record',function(){
-
-            var id = $(this).data('id');
-            var nama = $(this).data('nama');
-            var jumlah = $(this).data('jumlah');
-            $('#modal_title').text('Update Tingkatan Upah');
-            $('#tingkatan').modal('show');
-
-            $('#tingkatan_nama').val(nama);
-            $('#tingkatan_jumlah').val(jumlah);
-            $('.modal-footer').find('#simpan').replaceWith('<button id="simpan" type="button" data-id="'+id+'" class="btn btn-primary ">Simpan</button>');
-
-        });
-
-        //hapus record
-        $('#tabel_tingkatan').on('click','.hapus_record',function(){
-            var id=$(this).data('id');
-            $('#modal_hapus').modal('show');
-            $('.modal-footer').find('#hapus').replaceWith('<button id="hapus" type="button" data-id="'+id+'" class="btn btn-primary ">Ya, hapus</button>');
-        });
-        
-        $('.modal-footer').on('click','#hapus',function(){
-            var id = $(this).data('id');
-            var url;
-            url = '<?php echo base_url('master/tingkatan/hapus/') ?>'+id
-            $.ajax({
-              url:url,
-              type:'post',
-              dataType:'json',
-              success:function(res){
-                  table.DataTable().ajax.reload();
-                  toastr.success('Successfully Deleted Post!', 'Success Alert', {timeOut: 5000});
-                  $('#modal_hapus').modal('hide');
-                  $('.modal-footer').find('#hapus').replaceWith('<button id="hapus" type="button" class="btn btn-primary ">Ya, hapus</button>');
-              },
-              error:function(){
-                toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
-              }
-            })
-        });
-   });
-</script>
 <div class="modal fade" id="modal_hapus" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -167,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">Tidak</button>
-                <a href="#" class="btn btn-primary" id="hapus">Ya, hapus</a>
+                <a href="#" class="btn btn-primary" id="hapus_tingkatan">Ya, hapus</a>
             </div>
         </div>
     </div>
@@ -200,7 +71,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">batal</button>
-                <button id="simpan" type="button" class="btn btn-primary ">Simpan</button>
+                <button id="simpan_tingkatan" type="button" class="btn btn-primary ">Simpan</button>
             </div>
         </div>
     </div>

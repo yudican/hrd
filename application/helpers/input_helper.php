@@ -146,4 +146,44 @@ if ( ! function_exists('nomor_adm')){
             return $result;
         }
     }
+    //modals
+    if ( ! function_exists('modal')){
+        function modal($data,$modal_id,$modal_size = null){
+            $content = (empty($modal_size)) ? 'modal__content' : '';
+            $header = (empty($modal_size)) ? 'modal__header' : '';
+            $footer = (empty($modal_size)) ? 'modal__footer' : '';
+            $results = '';
+            $results .= '<div class="modal fade bd-example-modal-lg" id="'.$modal_id.'" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                              <div class="modal-dialog modal-lg">
+                                <div class="modal-content '.$content.'">
+                                  <div class="modal-header '.$header.'">
+                                    <h5 class="modal-title" id="modal_title">Riwayat Pendidikan</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body table-responsive">';
+                                    $results .= '<form id="form_'.$modal_id.'" method="POST">
+                                        <table class="table table-striped">';
+                                            
+                                            foreach ($data as $val) {
+                                               $results .= ' <tr>
+                                                                <td width="30%">'.$val['placeholder'].'</td>
+                                                                <td><input type="text" class="form-control" name="'.$val['name'].'" placeholder="'.$val['placeholder'].'" id="'.$val['name'].'"></td>
+                                                            </tr>';
+                                            }
+                                            
+                            $results .= '</table>';
+                            $results .= '</form>
+                                  </div>
+                                  <div class="modal-footer '.$footer.'">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button id="simpan" type="button" class="btn btn-primary ">Simpan</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>';
+            return $results;
+        }
+    }
 }

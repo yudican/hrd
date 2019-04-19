@@ -29,12 +29,15 @@ class Biodata_minat extends CI_Controller {
     	$id = $this->uri->segment(4);
         $insert = $this->minat->store($id);
         if ($insert) {
+            $data['success'] = true;
             $this->session->set_flashdata('pesan', 'data '.$this->uri->segment(2).' berhasil di simpan');
-            redirect(base_url('interview/input/'.$id));
+            // redirect(base_url('interview/input/'.$id));
         }else{
+            $data['success'] = false;
             $this->session->set_flashdata('error', 'data '.$this->uri->segment(2).' gagal di simpan');
-            redirect(base_url('interview/minat/input/'.$id));
+            // redirect(base_url('interview/minat/input/'.$id));
         }
+        echo json_encode($data);
     }
 }
         

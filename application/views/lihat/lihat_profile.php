@@ -4,7 +4,7 @@
         vertical-align: top;
         border-top: 1px solid #dee2e6;
     }
-    .modal-content {
+    .modal__content {
       height: 700px !important;
       max-height: calc(100vh - 50px) !important;
     }
@@ -423,11 +423,25 @@
                             <td width="8%"><?php echo $result_minat->minat_tujuan; ?></td>
                             <td width="6%"><?php echo $result_minat->minat_upah; ?></td>
                             <td width="10%"><?php echo $result_minat->minat_keahlian; ?></td>
-                            <td width="5%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                            <td width="5%"><button class="btn btn-success btn-sm" id="btn_minat" 
+                                data-id="<?php echo $result_minat->minat_nik; ?>"
+                                data-tujuan="<?php echo $result_minat->minat_tujuan; ?>"
+                                data-keahlian="<?php echo $result_minat->minat_keahlian; ?>"
+                                data-upah="<?php echo $result_minat->minat_upah; ?>">
+                                <i class="fa fa-edit"></i></button></td>
                         </tr>
+                        <?php 
+                            $data = [
+                                ['name' => 'minat_tujuan','placeholder' => 'Tujuan Minat'],
+                                ['name' => 'minat_upah','placeholder' => 'Minat Upah'],
+                                ['name' => 'minat_keahlian','placeholder' => 'Keahlian'],
+                            ];
+                         ?>
                     </tbody>
                 </table>
+               
             </div>
+
             <div class="tab-pane" id="pengalaman">
                 <button class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> tambah</button>
                 <table class="table table-striped" width="100%">
@@ -616,9 +630,7 @@
   </div>
 </div>
 <!-- end modal -->
-<script>
-    $(document).on('click','#btn_detail',function () {
-        $('#modal_pendidikan').modal('show');
-        var id = $(this).data('id');
-    })
-</script>
+ <?php 
+    
+    echo modal($data,'modal_minat','modal_size');
+ ?>

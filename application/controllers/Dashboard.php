@@ -22,6 +22,22 @@ class Dashboard extends CI_Controller {
         ];
         $this->load->view('index', $data);
     }
+    public function cek()
+    {
+       $data = array(
+            array(
+                'nama' => 'satu',
+                'nama2' => 'dua'
+            ),
+             array(
+                'nama' => 'satu',
+                'form2' => 'dua'
+            )
+       );
+       foreach ($data as $tas) {
+          echo $tas['nama'];
+       }
+    }
         
 }
         

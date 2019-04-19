@@ -4,7 +4,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-        <?php echo form_open_multipart(base_url('interview/minat/simpan/'.$this->uri->segment(4))); ?>
+        <?php echo form_open_multipart(base_url('interview/minat/simpan/'.$this->uri->segment(4)),array('id' => 'form_minat')); ?>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Nomor KTP</label>
                 <div class="col-sm-4">

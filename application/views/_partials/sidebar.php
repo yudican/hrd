@@ -98,9 +98,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="<?php echo base_url('interview/pengiriman'); ?>" class="nav-link <?php echo active_menu('interview','pengiriman'); ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p></p>
+                  <p>Pengiriman</p>
                 </a>
               </li>
             </ul>

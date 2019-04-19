@@ -2,25 +2,10 @@
         
 defined('BASEPATH') OR exit('No direct script access allowed');
         
-class Interview_cadangan extends CI_Controller {
+class Interview_pengiriman extends CI_Controller {
     public function __construct() {
         parent:: __construct();
-        $this->load->model(array(
-            'Ktp_models' => 'ktp',
-            'Profile_models' => 'profile',
-            'Domisili_models' => 'domisili',
-            'Referensi_models' => 'referensi',
-            'Susunan_anak_models' => 'sao',
-            'Darurat_models' => 'darurat',
-            'Ortu_models' => 'ortu',
-            'Kehamilan_models' => 'kehamilan',
-            'Keluarga_models' => 'keluarga',
-            'Wali_models' => 'wali',
-            'Minat_kerja_models' => 'minat',
-            'Pengalaman_models' => 'pengalaman',
-            'Pendidikan_models' => 'pendidikan',
-            'Interview_models' => 'interview'
-        ));
+        $this->load->model('Pengiriman_models', 'pengiriman');
         $this->load->library('datatables');
         $this->load->helper('input');
         
@@ -32,47 +17,25 @@ class Interview_cadangan extends CI_Controller {
     public function index()
     {
          $data = [
-             'title' => 'INTERVIEW LIHAT | HRD',
-             'isi' => 'interview/interview_cadangan',
-             'cabang' => $this->db->get('tabel_cabang')->result(),
-             'bagian' => $this->db->get('bagian')->result()
+             'title' => 'INTERVIEW PENGIRIMAN | HRD',
+             'isi' => 'interview/interview_pengiriman'
          ];
          $this->load->view('index', $data);
     }
 
 
-    public function getInterview()
+    public function getPengiriman()
     {
-         $this->datatables->select('biodata_nik,biodata_nama,nomor_adm,interview_status,interview_tanggal,interview_keterangan,profil_foto,biodata_kelamin');
-         $this->datatables->unset_column('interview_nik');
-         if ($this->input->post('status') == 'Gagal Seleksi' && $this->input->post('filter')) {
-            $this->datatables->like('interview_status', 'Gagal Seleksi');
-            $this->datatables->like('biodata_nik', $this->input->post('filter'));
-            $this->datatables->or_like('interview_status', 'Gagal Seleksi');
-            $this->datatables->like('biodata_nama', $this->input->post('filter'));
-        }
-        if ($this->input->post('status') == 'Cadangan' && $this->input->post('filter')) {
-            $this->datatables->like('interview_status', 'Cadangan');
-            $this->datatables->like('biodata_nik', $this->input->post('filter'));
-            $this->datatables->or_like('interview_status', 'Cadangan');
-            $this->datatables->like('biodata_nama', $this->input->post('filter'));
-        }
-        if ($this->input->post('status')) {
-            $this->datatables->like('interview_status', $this->input->post('status'));
-        }else if ($this->input->post('filter')) {
-            $this->datatables->like('biodata_nama', $this->input->post('filter'));
-            $this->datatables->or_like('biodata_nik', $this->input->post('filter'));
-        }else{
-            echo '';
-        }
+         $this->datatables->select('pengiriman_id,biodata_nik,biodata_nama,nama_cabang,nama_bagian,pengiriman_tanggal,pengiriman_status');
+         $this->datatables->unset_column('pengiriman_id');
          
-         $this->datatables->join('biodata_interview','biodata_ktp.biodata_nik=biodata_interview.interview_nik','left');
-         $this->datatables->join('biodata_profil','biodata_ktp.biodata_nik=biodata_profil.profil_nik','left');
-         $this->datatables->from('biodata_ktp');
-         $this->datatables->edit_column('interview_tanggal','$1','tgl_indo(interview_tanggal)');
-         $this->datatables->edit_column('profil_foto','$1','getFoto(profil_foto)');
-         $this->datatables->edit_column('biodata_kelamin','$1','statusGagal(interview_status,biodata_nik)');
-         // $this->datatables->add_column('actions', 'statusGagal(interview_status)','interview_status');
+         $this->datatables->join('biodata_ktp','tabel_pengiriman.pengiriman_nik=biodata_ktp.biodata_nik','left');
+         $this->datatables->join('bagian','tabel_pengiriman.pengiriman_bagian=bagian.id_bagian','left');
+         $this->datatables->join('tabel_cabang','tabel_pengiriman.pengiriman_cabang=tabel_cabang.id_cabang','left');
+         $this->datatables->from('tabel_pengiriman');
+         $this->datatables->edit_column('pengiriman_tanggal','$1','tgl_indo(pengiriman_tanggal)');
+         $this->datatables->add_column('nomor','1');
+          $this->datatables->add_column('actions', '<a href="javascript:void(0);" class="btn_diterima btn btn-success btn-sm" data-id="$1"><i class="fa fa-check-square" title="di terima"></i></a>  <a href="javascript:void(0);" class="btn_dibatalkan btn btn-danger btn-sm" data-id="$1"><i class="fa fa-times-circle" title="di batalkan"></i></a> <a href="javascript:void(0);" class="btn_ditolak btn btn-warning btn-sm" data-id="$1" title="di tolak"><i class="fa fa-user-times"></i></a>','pengiriman_id,biodata_nik,biodata_nama,nama_cabang,nama_bagian,pengiriman_tanggal,pengiriman_status,nomor,actions');
  
         echo $this->datatables->generate('json','');
     }
@@ -128,7 +91,6 @@ class Interview_cadangan extends CI_Controller {
                 'pengiriman_bagian' => $this->input->post('pengiriman_bagian',true),
                 'pengiriman_keterangan' => $this->input->post('pengiriman_keterangan',true),
                 'pengiriman_jam' => $this->input->post('pengiriman_jam',true),
-                'pengiriman_tanggal' => date('Y-m-d'),
                 'pengiriman_nomor' => nomor_adm('tabel_pengiriman','pengiriman_nomor','','pengiriman_id'),
                 'pengiriman_status' => 'PROGRES'
              ];

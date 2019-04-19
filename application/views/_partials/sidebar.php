@@ -51,6 +51,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="<?php echo base_url('master/bagian'); ?>" class="nav-link <?php echo active_menu('master','bagian'); ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Master Bagian</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="<?php echo base_url('master/tingkatan'); ?>" class="nav-link <?php echo active_menu('master','tingkatan'); ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
                   <p>Master Tingkatan Upah</p>

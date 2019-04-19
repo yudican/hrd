@@ -272,6 +272,105 @@ $('.modal-footer').on('click','#hapus_jabatan',function(){
     })
 });
 
+
+
+//master bagian
+$('#btn_tambah_bagian').on('click',function(){
+    $('#modal_title').text('Input Bagian');
+    $('#bagian').modal('show');
+    $('#form_bagian')[0].reset();
+    $('.modal-footer').find('#simpan_bagian').replaceWith('<button id="simpan_bagian" type="button" class="btn btn-primary ">Simpan</button>');
+});
+$('.modal-footer').on('click','#simpan_bagian',function(){
+    var id = $(this).data('id');
+    var url;
+    if (id) {
+      url = base_url+'master/bagian/update/'+id
+    }else{
+      url = base_url+'master/bagian/input'
+    }
+    $.ajax({
+      url:url,
+      type:'post',
+      data:$('#form_bagian').serialize(),
+      dataType:'json',
+      success:function(res){
+        if (res.success == true) {
+          $("#tabel_bagian").DataTable().ajax.reload();
+          toastr.success('Successfully Inserted Post!', 'Success Alert', {timeOut: 5000});
+          $('#bagian').modal('hide');
+          $('#form_bagian')[0].reset();
+          $('#nama_bagian').removeClass('is-valid').removeClass('is-invalid');
+          $('#kategori_bagian').removeClass('is-valid').removeClass('is-invalid');
+          $('.text-danger').remove();
+
+        }else{
+          $.each(res.message,function(key,value) {
+            $('#' + key).removeClass('is-invalid')
+            $('#' + key).addClass(value.length > 0 ? 'is-invalid':'is-valid');
+            var show = $('#' + key);
+            show.closest('.form-group')
+            
+            // .addClass('is-valid')
+            .removeClass(value.length > 0 ? 'text-danger':'')
+            .find('.text-danger').remove()
+            show.after(value);
+          })
+        }
+      },
+      error:function(){
+        toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
+      }
+    })
+});
+$('#tabel_bagian').on('click','.edit_record',function(){
+
+    var id = $(this).data('id');
+    var nama = $(this).data('nama');
+    var kategori = $(this).data('kategori');
+    $('#modal_title').text('Update bagian');
+    $('#bagian').modal('show');
+
+    $('#nama_bagian').val(nama);
+    $('#kategori_bagian').val(kategori);
+    $('.modal-footer').find('#simpan_bagian').replaceWith('<button id="simpan_bagian" type="button" data-id="'+id+'" class="btn btn-primary ">Simpan</button>');
+
+});
+
+//hapus record
+$('#tabel_bagian').on('click','.hapus_record',function(){
+    var id=$(this).data('id');
+    $('#modal_hapus').modal('show');
+    $('.modal-footer').find('#hapus_bagian').replaceWith('<button id="hapus_bagian" type="button" data-id="'+id+'" class="btn btn-primary ">Ya, hapus</button>');
+});
+
+$('.modal-footer').on('click','#hapus_bagian',function(){
+    var id = $(this).data('id');
+    var url;
+    url = base_url+'master/bagian/hapus/'+id
+    $.ajax({
+      url:url,
+      type:'post',
+      dataType:'json',
+      success:function(res){
+          $("#tabel_bagian").DataTable().ajax.reload();
+          toastr.success('Successfully Deleted Post!', 'Success Alert', {timeOut: 5000});
+          $('#modal_hapus').modal('hide');
+          $('.modal-footer').find('#hapus_bagian').replaceWith('<button id="hapus_bagian" type="button" class="btn btn-primary ">Ya, hapus</button>');
+      },
+      error:function(){
+        toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
+      }
+    })
+});
+
+
+
+
+
+
+
+
 //menampilkan detail pendidikan
 $(document).on('click','#btn_detail',function () {
     $('#modal_pendidikan').modal('show');

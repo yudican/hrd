@@ -21,6 +21,12 @@ $route['master/kategori/get'] = 'Master_kategori_bagian/getKategori';
 $route['master/kategori/update/(:num)'] = 'Master_kategori_bagian/update/$1';
 $route['master/kategori/hapus/(:num)'] = 'Master_kategori_bagian/hapus/$1';
 $route['master/kategori/input'] = 'Master_kategori_bagian/input';
+//master bagian
+$route['master/bagian'] = 'Master_bagian/data_bagian';
+$route['master/bagian/get'] = 'Master_bagian/getbagian';
+$route['master/bagian/update/(:num)'] = 'Master_bagian/update/$1';
+$route['master/bagian/hapus/(:num)'] = 'Master_bagian/hapus/$1';
+$route['master/bagian/input'] = 'Master_bagian/input';
 //master jabatan
 $route['master/jabatan'] = 'master_jabatan/data_jabatan';
 $route['master/jabatan/get'] = 'master_jabatan/getJabatan';

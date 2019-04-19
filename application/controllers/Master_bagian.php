@@ -24,6 +24,9 @@ class Master_bagian extends CI_Controller {
     }
     public function getBagian()
     {
+    	if (!$this->input->is_ajax_request()) {
+    		exit('No direct script access allowed');
+    	}	
         $this->datatables->select('id_bagian,nama_bagian,kategori_bagian,kategori_nama')
                 ->unset_column('id_bagian')
                 ->unset_column('kategori_bagian')
@@ -37,6 +40,9 @@ class Master_bagian extends CI_Controller {
 
     public function input()
     {
+    	if (!$this->input->is_ajax_request()) {
+    		exit('No direct script access allowed');
+    	}
     	$data = array('success' => false,'message' => array());
         $this->form_validation->set_rules('nama_bagian', 'Nama bagian', 'required');
         $this->form_validation->set_rules('kategori_bagian', 'Katgori bagian', 'required');
@@ -60,7 +66,9 @@ class Master_bagian extends CI_Controller {
     //updating data
     public function update($id)
     {
-    	
+    	if (!$this->input->is_ajax_request()) {
+    		exit('No direct script access allowed');
+    	}
     	$data = array('success' => false,'message' => array());
         $this->form_validation->set_rules('nama_bagian', 'Nama bagian', 'required');
         $this->form_validation->set_rules('kategori_bagian', 'Katgori bagian', 'required');
@@ -84,6 +92,9 @@ class Master_bagian extends CI_Controller {
     //hapus data
     public function hapus($id)
     {
+    	if (!$this->input->is_ajax_request()) {
+    		exit('No direct script access allowed');
+    	}
         $hapus = $this->db->delete('bagian',['id_bagian' => $id]);
 
         if ($hapus) {

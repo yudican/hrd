@@ -24,6 +24,9 @@ class Master_cabang extends CI_Controller {
     }
     public function getCabang()
     {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
         $this->datatables->select('id_cabang,kategori_cabang,nama_cabang,kepala_toko,personalia_satu,personalia_dua,personalia_tiga,alamat,nomor_hp_cabang,npwp_cabang,wilayah_upah')
                 ->unset_column('id_cabang')
                 
@@ -39,6 +42,7 @@ class Master_cabang extends CI_Controller {
 
     public function cabang()
     {
+        
         $id = $this->uri->segment(3);
         $url = $this->uri->segment(4);
         $this->form_validation->set_rules('kategori_cabang', 'Kategori Cabang', 'required');

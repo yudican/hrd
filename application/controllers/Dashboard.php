@@ -18,7 +18,8 @@ class Dashboard extends CI_Controller {
     {
         $data = [
             'title' => 'dashboard',
-            'isi' => 'dashboard'
+            'isi' => 'dashboard',
+            'total' => $this->db->get_where('biodata_interview',['interview_status' => 'Cadangan'])->num_rows(),
         ];
         $this->load->view('index', $data);
     }

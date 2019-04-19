@@ -9,6 +9,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="<?php echo base_url('asset/') ?>dist/css/adminlte.min.css">
   <link rel="stylesheet" href="<?php echo base_url('asset/') ?>dist/css/toastr.min.css">
+   <link rel="stylesheet" href="<?php echo base_url('asset/') ?>dist/css/timepicker.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="<?php echo base_url('asset/') ?>plugins/datatables/dataTables.bootstrap4.css">
   
@@ -32,5 +33,8 @@
     margin: 1.75rem auto;
 
   }
-  
+  .modal__content {
+      height: 700px !important;
+      max-height: calc(100vh - 50px) !important;
+    }
 </style>

@@ -15,7 +15,7 @@
              <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label">Nomor Adm</label>
                 <div class="col-sm-4">
-                    <input type="text" placeholder="Enter Nomor ADM" class="form-control" value="<?php echo (isset($row->nomor_adm)) ? $row->nomor_adm : nomor_adm('biodata_interview','nomor_adm',$this->uri->segment(3)); ?>" name="nomor_adm" readonly>
+                    <input type="text" placeholder="Enter Nomor ADM" class="form-control" value="<?php echo (isset($row->nomor_adm)) ? $row->nomor_adm : nomor_adm('biodata_interview','nomor_adm',$this->uri->segment(3),'interview_nik'); ?>" name="nomor_adm" readonly>
                     <small class="text-danger"><?php echo form_error('nomor_adm'); ?></small>
                 </div>
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal Interview</label>

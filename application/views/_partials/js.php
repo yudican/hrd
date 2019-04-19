@@ -10,7 +10,7 @@
 
 <!-- OPTIONAL SCRIPTS -->
 <script src="<?php echo base_url('asset/'); ?>dist/js/demo.js"></script>
-
+<script src="<?php echo base_url('asset/'); ?>dist/js/timepicker.js"></script>
 
 <!-- PAGE SCRIPTS -->
 

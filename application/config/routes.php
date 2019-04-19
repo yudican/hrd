@@ -88,6 +88,7 @@ $route['interview/minat/simpan/(:num)'] = 'biodata_minat/simpan/$1';
 //data interview
 $route['interview/lihat'] = 'interview_cadangan';
 $route['interview/detail/(:num)'] = 'interview_cadangan/lihat/$1';
+$route['interview/pengiriman/input'] = 'interview_cadangan/pengiriman';
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

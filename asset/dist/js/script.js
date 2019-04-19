@@ -408,3 +408,45 @@ $('.modal-footer').on('click','#simpan',function(e){
       }
     })
 });
+
+
+
+
+//form pengiriman
+$('.modal-footer').on('click','#simpan_pengiriman',function(){
+    $.ajax({
+      url:base_url+'interview/pengiriman/input',
+      type:'post',
+      data:$('#form_pengiriman').serialize(),
+      dataType:'json',
+      success:function(res){
+        if (res.success == true) {
+          $("#tabel_interview_cadangan").DataTable().ajax.reload();
+          toastr.success('Successfully Inserted Post!', 'Success Alert', {timeOut: 5000});
+          $('#pengiriman').modal('hide');
+          $('#form_pengiriman')[0].reset();
+          $('#pengiriman_nik').removeClass('is-valid').removeClass('is-invalid');
+          $('#pengiriman_cabang').removeClass('is-valid').removeClass('is-invalid');
+          $('#pengiriman_bagian').removeClass('is-valid').removeClass('is-invalid');
+          $('#pengiriman_keterangan').removeClass('is-valid').removeClass('is-invalid');
+          $('#pengiriman_jam').removeClass('is-valid').removeClass('is-invalid');
+          $('.text-danger').remove();
+
+        }else{
+          $.each(res.message,function(key,value) {
+            $('#' + key).removeClass('is-invalid')
+            $('#' + key).addClass(value.length > 0 ? 'is-invalid':'is-valid');
+            var show = $('#' + key);
+            show.closest('.form-group')
+            // .addClass('is-valid')
+            .removeClass(value.length > 0 ? 'text-danger':'')
+            .find('.text-danger').remove()
+            show.after(value);
+          })
+        }
+      },
+      error:function(){
+        toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
+      }
+    })
+});

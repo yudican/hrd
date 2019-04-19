@@ -4,10 +4,7 @@
         vertical-align: top;
         border-top: 1px solid #dee2e6;
     }
-    .modal__content {
-      height: 700px !important;
-      max-height: calc(100vh - 50px) !important;
-    }
+    
 </style>
 <div class="row" style="overflow-y:auto;">
     <div class="card card-primary col-md-4">

@@ -33,7 +33,9 @@ class Interview_cadangan extends CI_Controller {
     {
          $data = [
              'title' => 'INTERVIEW LIHAT | HRD',
-             'isi' => 'interview/interview_cadangan'
+             'isi' => 'interview/interview_cadangan',
+             'cabang' => $this->db->get('tabel_cabang')->result(),
+             'bagian' => $this->db->get('bagian')->result()
          ];
          $this->load->view('index', $data);
     }
@@ -99,6 +101,41 @@ class Interview_cadangan extends CI_Controller {
         ];
         $this->load->view('index', $data);
     }
+
+    //input pengiriman
+    public function pengiriman()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        $data = array('success' => false,'message' => array());
+        $this->form_validation->set_rules('pengiriman_cabang', 'Cabang Pengiriman', 'required');
+        $this->form_validation->set_rules('pengiriman_bagian', 'Pengiriman bagian', 'required');
+        $this->form_validation->set_rules('pengiriman_jam', 'Jam Pengiriman', 'required');
+        $this->form_validation->set_rules('pengiriman_keterangan', 'Keterangan Pengiriman', 'required');
+        $this->form_validation->set_error_delimiters('<small class="text-danger">','</small>');
+
+        if ($this->form_validation->run() == FALSE) {
+            foreach ($_POST as $key => $value) {
+                $data['message'][$key] = form_error($key);
+            }
+            
+        }else{
+            $data['success'] = true;
+             $request = [
+                'pengiriman_nik' => $this->input->post('pengiriman_nik',true),
+                'pengiriman_cabang' => $this->input->post('pengiriman_cabang',true),
+                'pengiriman_bagian' => $this->input->post('pengiriman_bagian',true),
+                'pengiriman_keterangan' => $this->input->post('pengiriman_keterangan',true),
+                'pengiriman_jam' => $this->input->post('pengiriman_jam',true),
+                'pengiriman_nomor' => nomor_adm('tabel_pengiriman','pengiriman_nomor','','pengiriman_id'),
+                'pengiriman_status' => 'PROGRES'
+             ];
+             $this->db->insert('tabel_pengiriman', $request);
+        }
+        echo json_encode($data);
+    }
+    
 }
         
     /* End of file  Master.php */

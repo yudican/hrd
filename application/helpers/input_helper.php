@@ -96,7 +96,7 @@ if ( ! function_exists('format_uang')){
     }
 }
 if ( ! function_exists('nomor_adm')){
-    function nomor_adm($table,$colomn,$id=null)
+    function nomor_adm($table,$colomn,$id=null,$primary=null)
     {
         $ci =& get_instance();
 
@@ -115,7 +115,7 @@ if ( ! function_exists('nomor_adm')){
        }else{
              $get_no = $ci->db
                     ->order_by($colomn,'DESC')
-                    ->get_where($table,['interview_nik' => $id])->row();
+                    ->get_where($table,[$primary => $id])->row();
         
             if (empty($get_no->$colomn)) {
                 $nomor = '1';
@@ -125,6 +125,7 @@ if ( ! function_exists('nomor_adm')){
             return $nomor;
        }
     }
+
     //menampilkan foto
     if ( ! function_exists('getFoto')){
         function getFoto($foto){
@@ -141,7 +142,7 @@ if ( ! function_exists('nomor_adm')){
             if ($value == 'Gagal Seleksi') {
                 $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="'.$id.'"><i class="fa fa-folder-open"></i></a>';
             }else{
-                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="'.$id.'"><i class="fa fa-folder-open"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-warning btn-sm" data-id="'.$id.'"><i class="fa fa-paper-plane"></i></a>';
+                $result = '<a href="javascript:void(0);" class="detail_record btn btn-info btn-sm" data-id="'.$id.'"><i class="fa fa-folder-open"></i></a>  <a href="javascript:void(0);" class="btn_kirim btn btn-warning btn-sm" data-id="'.$id.'"><i class="fa fa-paper-plane"></i></a>';
             }
             return $result;
         }

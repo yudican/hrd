@@ -84,34 +84,74 @@
             var id=$(this).data('id');
             document.location='<?php echo site_url('interview/detail/') ?>'+id;
         });
-        $('#tabel_interview_cadangan').on('click','.hapus_record',function(){
+        $('#tabel_interview_cadangan').on('click','.btn_kirim',function(){
             var id=$(this).data('id');
-            $('#modal_hapus').modal('show');
-            $('.hapus').attr('data-url','<?php echo site_url('master_cabang/hapus/') ?>'+id+'/cabang');
+            $('#pengiriman_nik').val(id);
+            $('#modal_title').text('Input Data Pengiriman');
+            $('#pengiriman').modal('show');
+            // $('.hapus').attr('data-url','<?php echo site_url('master_cabang/hapus/') ?>'+id+'/cabang');
         });
-
-        //hapus record
-        $('.modal-footer').on('click','.hapus',function(){
-            var url=$(this).data('url');
-            document.location.href=url;
-        });
+        $('#pengiriman_jam').timepicker();
    });
 </script>
-<div class="modal fade" id="modal_hapus" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+
+<!-- modal pengiriman -->
+<div class="modal fade bd-example-modal-lg" id="pengiriman" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div class="modal-dialog modals" role="document" style="width: 650px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="my-modal-title">Konfirmasi Hapus</h5>
+                <h5 class="modal-title" id="modal_title"></h5>
                 <button class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus data ini.?</p>
+                <form id="form_pengiriman" action="" method="POST">
+                    <div class="form-group row">
+                        <label for="pengiriman_nik" class="col-sm-3 col-form-label">Nomor NIK</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="pengiriman_nik" value="" name="pengiriman_nik" placeholder="nomor nik" readonly="">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Cabang Pengiriman</label>
+                        <div class="col-sm-9">
+                            <select name="pengiriman_cabang" id="pengiriman_cabang" class="form-control">
+                                <option value="">Pilih Cabang</option>
+                                <?php foreach($cabang as $results): ?>
+                                    <option value="<?php echo $results->id_cabang; ?>"><?php echo $results->nama_cabang; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-3 col-form-label">Dikirim Ke Bagian</label>
+                        <div class="col-sm-9">
+                           <select name="pengiriman_bagian" id="pengiriman_bagian" class="form-control">
+                                <option value="">Pilih Bagian</option>
+                                <?php foreach($bagian as $result): ?>
+                                    <option value="<?php echo $result->id_bagian; ?>"><?php echo $result->nama_bagian; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="pengiriman_jam" class="col-sm-3 col-form-label">Jam Kirim</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="pengiriman_jam" name="pengiriman_jam" placeholder="00:00">
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="pengiriman_keterangan" class="col-sm-3 col-form-label">Keterangan Kirim</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" id="pengiriman_keterangan" name="pengiriman_keterangan" placeholder="Keterangan Kirim">
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">Tidak</button>
-                <a href="#" class="btn btn-primary hapus">Ya, hapus</a>
+                <button class="btn btn-danger" data-dismiss="modal" aria-label="Close">batal</button>
+                <button id="simpan_pengiriman" type="button" class="btn btn-primary ">Simpan</button>
             </div>
         </div>
     </div>

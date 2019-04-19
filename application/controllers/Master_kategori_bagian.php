@@ -2,7 +2,7 @@
         
 defined('BASEPATH') OR exit('No direct script access allowed');
         
-class Master_tingkatan extends CI_Controller {
+class Master_kategori_bagian extends CI_Controller {
     public function __construct() {
         parent:: __construct();
         $this->load->library(array('datatables','form_validation'));
@@ -12,23 +12,22 @@ class Master_tingkatan extends CI_Controller {
             redirect('login');
         }
     }
-    public function data_tingkatan()
+    public function data_kategori()
     {
         $data = [
-            'title' => 'Data Tingkatan Upah',
-            'isi' => 'master/master_tingkatan',
+            'title' => 'Data Kategori Bagian',
+            'isi' => 'master/master_kategori_bagian',
             
         ];
         $this->load->view('index', $data);
     }
-    public function getTingkatan()
+    public function getKategori()
     {
-        $this->datatables->select('tingkatan_id,tingkatan_nama,tingkatan_jumlah')
-                ->unset_column('tingkatan_id')
-                ->from('tingkatan_upah')
-                ->edit_column('tingkatan_jumlah','$1','format_uang(tingkatan_jumlah)')
+        $this->datatables->select('kategori_id,kategori_nama')
+                ->unset_column('kategori_id')
+                ->from('kategori_bagian')
                 ->add_column('nomor','1')
-                ->add_column('actions', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-sm" data-id="$1" data-nama="$2" data-jumlah="$3"><i class="fa fa-edit"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-sm" data-id="$1"><i class="fa fa-trash"></i></a>','tingkatan_id,tingkatan_nama,tingkatan_jumlah,nomor,actions');
+                ->add_column('actions', '<a href="javascript:void(0);" class="edit_record btn btn-info btn-sm" data-id="$1" data-nama="$2" data-jumlah="$3"><i class="fa fa-edit"></i></a>  <a href="javascript:void(0);" class="hapus_record btn btn-danger btn-sm" data-id="$1"><i class="fa fa-trash"></i></a>','kategori_id,kategori_nama,nomor,actions');
 
         echo $this->datatables->generate('json','');
     }
@@ -36,8 +35,7 @@ class Master_tingkatan extends CI_Controller {
     public function input()
     {
     	$data = array('success' => false,'message' => array());
-        $this->form_validation->set_rules('tingkatan_nama', 'Nama Tingkatan', 'required');
-        $this->form_validation->set_rules('tingkatan_jumlah', 'Jumlah', 'required');
+        $this->form_validation->set_rules('kategori_nama', 'Nama kategori', 'required');
         $this->form_validation->set_error_delimiters('<small class="text-danger">','</small>');
 
         if ($this->form_validation->run() == FALSE) {
@@ -48,10 +46,9 @@ class Master_tingkatan extends CI_Controller {
         }else{
             $data['success'] = true;
              $request = [
-             	'tingkatan_nama' => $this->input->post('tingkatan_nama',true),
-             	'tingkatan_jumlah' => $this->input->post('tingkatan_jumlah',true)
+             	'kategori_nama' => $this->input->post('kategori_nama',true)
              ];
-             $this->db->insert('tingkatan_upah', $request);
+             $this->db->insert('kategori_bagian', $request);
         }
         echo json_encode($data);
     }
@@ -60,8 +57,7 @@ class Master_tingkatan extends CI_Controller {
     {
     	
     	$data = array('success' => false,'message' => array());
-        $this->form_validation->set_rules('tingkatan_nama', 'Nama Tingkatan', 'required');
-        $this->form_validation->set_rules('tingkatan_jumlah', 'Jumlah', 'required');
+        $this->form_validation->set_rules('kategori_nama', 'Nama kategori', 'required');
         $this->form_validation->set_error_delimiters('<small class="text-danger">','</small>');
 
         if ($this->form_validation->run() == FALSE) {
@@ -72,17 +68,16 @@ class Master_tingkatan extends CI_Controller {
         }else{
             $data['success'] = true;
              $request = [
-             	'tingkatan_nama' => $this->input->post('tingkatan_nama',true),
-             	'tingkatan_jumlah' => $this->input->post('tingkatan_jumlah',true)
+             	'kategori_nama' => $this->input->post('kategori_nama',true)
              ];
-             $this->db->update('tingkatan_upah', $request,['tingkatan_id' => $id]);
+             $this->db->update('kategori_bagian', $request,['kategori_id' => $id]);
         }
         echo json_encode($data);
     }
     //hapus data
     public function hapus($id)
     {
-        $hapus = $this->db->delete('tingkatan_upah',['tingkatan_id' => $id]);
+        $hapus = $this->db->delete('kategori_bagian',['kategori_id' => $id]);
 
         if ($hapus) {
             $data['success'] = true;

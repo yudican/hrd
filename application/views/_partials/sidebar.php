@@ -57,9 +57,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="<?php echo base_url('master/kategori'); ?>" class="nav-link <?php echo active_menu('master','kategori'); ?>">
                   <i class="fa fa-circle-o nav-icon"></i>
-                  <p></p>
+                  <p>Kategori Bagian</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('master/jabatan'); ?>" class="nav-link <?php echo active_menu('master','jabatan'); ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Kategori Jabatan</p>
                 </a>
               </li>
             </ul>

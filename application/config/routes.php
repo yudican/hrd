@@ -10,10 +10,23 @@ $route['master/upah/input'] = 'master_upah/input_upah';
 $route['master/upah'] = 'master_upah/data_upah';
 $route['master/cabang'] = 'master_cabang/data_cabang';
 $route['master/upah/update/(:num)'] = 'master_upah/update/$1';
+//tingkatan upah
 $route['master/tingkatan'] = 'master_tingkatan/data_tingkatan';
 $route['master/tingkatan/update/(:num)'] = 'master_tingkatan/update/$1';
 $route['master/tingkatan/hapus/(:num)'] = 'master_tingkatan/hapus/$1';
 $route['master/tingkatan/input'] = 'master_tingkatan/input';
+//kategori bagian
+$route['master/kategori'] = 'Master_kategori_bagian/data_kategori';
+$route['master/kategori/get'] = 'Master_kategori_bagian/getKategori';
+$route['master/kategori/update/(:num)'] = 'Master_kategori_bagian/update/$1';
+$route['master/kategori/hapus/(:num)'] = 'Master_kategori_bagian/hapus/$1';
+$route['master/kategori/input'] = 'Master_kategori_bagian/input';
+//master jabatan
+$route['master/jabatan'] = 'master_jabatan/data_jabatan';
+$route['master/jabatan/get'] = 'master_jabatan/getJabatan';
+$route['master/jabatan/update/(:num)'] = 'master_jabatan/update/$1';
+$route['master/jabatan/hapus/(:num)'] = 'master_jabatan/hapus/$1';
+$route['master/jabatan/input'] = 'master_jabatan/input';
 //interview route
 //ktp
 $route['interview/ktp/input'] = 'biodata_ktp/input';

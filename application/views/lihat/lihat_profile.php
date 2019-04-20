@@ -334,7 +334,7 @@
             </div>
             <!-- wali -->
             <div class="tab-pane" id="wali">
-                <table class="table table-striped" width="100%">
+                <table class="table table-striped" width="100%" id="wali_table">
                     <thead>
                         <tr>
                             <th width="3%">No</th>
@@ -356,7 +356,20 @@
                                 <td width="5%"><?php echo $result_wali->wali_ayah_hp; ?></td>
                                 <td width="7%"><?php echo $result_wali->wali_ayah_pekerjaan; ?></td>
                                 <td width="7%"><?php echo $result_wali->wali_ayah_bidang_jabatan; ?></td>
-                                <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                                <td width="3%" rowspan="2" class="text-center"><button class="btn btn-success btn-sm" id="btn_wali"
+                                                        data-id="<?php echo $result_wali->wali_nik; ?>"
+                                                        data-nama="<?php echo $result_wali->wali_ayah_nama; ?>"
+                                                        data-umur="<?php echo $result_wali->wali_ayah_umur; ?>"
+                                                        data-alamat="<?php echo $result_wali->wali_ayah_alamat; ?>"
+                                                        data-hp="<?php echo $result_wali->wali_ayah_hp; ?>"
+                                                        data-pekerjaan="<?php echo $result_wali->wali_ayah_pekerjaan; ?>"
+                                                        data-bidang="<?php echo $result_wali->wali_ayah_bidang_jabatan; ?>"
+                                                        data-namaibu="<?php echo $result_wali->wali_ibu_nama; ?>"
+                                                        data-umuribu="<?php echo $result_wali->wali_ibu_umur; ?>"
+                                                        data-alamatibu="<?php echo $result_wali->wali_ibu_alamat; ?>"
+                                                        data-hpibu="<?php echo $result_wali->wali_ibu_hp; ?>"
+                                                        data-pekerjaanibu="<?php echo $result_wali->wali_ibu_pekerjaan; ?>"
+                                                        data-bidangibu="<?php echo $result_wali->wali_ibu_bidang_jabatan; ?>"><i class="fa fa-edit"></i></button></td>
                             </tr>
                             <tr style="font-size:14px;">
                                 <td width="3%">2.</td>
@@ -366,9 +379,25 @@
                                 <td width="5%"><?php echo $result_wali->wali_ibu_hp; ?></td>
                                 <td width="7%"><?php echo $result_wali->wali_ibu_pekerjaan; ?></td>
                                 <td width="7%"><?php echo $result_wali->wali_ibu_bidang_jabatan; ?></td>
-                                <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td>
+                                <!-- <td width="3%"><button class="btn btn-success btn-sm"><i class="fa fa-edit"></i></button></td> -->
                             </tr>
                     </tbody>
+                        <?php 
+                            $data_wali = [
+                                ['name' => 'wali_ayah_nama','placeholder' => 'Nama'],
+                                ['name' => 'wali_ayah_umur','placeholder' => 'Umur'],
+                                ['name' => 'wali_ayah_alamat','placeholder' => 'Alamat'],
+                                ['name' => 'wali_ayah_hp','placeholder' => 'Nomor Hp/Telepon'],
+                                ['name' => 'wali_ayah_pekerjaan','placeholder' => 'Perkerjaan'],
+                                ['name' => 'wali_ayah_bidang_jabatan','placeholder' => 'Bidang/Jabatan'],
+                                ['name' => 'wali_ibu_nama','placeholder' => 'Nama Ibu'],
+                                ['name' => 'wali_ibu_umur','placeholder' => 'Umur Ibu'],
+                                ['name' => 'wali_ibu_alamat','placeholder' => 'Alamat Ibu'],
+                                ['name' => 'wali_ibu_hp','placeholder' => 'Nomor Hp/Telepon Ibu'],
+                                ['name' => 'wali_ibu_pekerjaan','placeholder' => 'Perkerjaan Ibu'],
+                                ['name' => 'wali_ibu_bidang_jabatan','placeholder' => 'Bidang/Jabatan Ibu'],
+                            ];
+                         ?>
                 </table>
             </div>
             <!-- keluarga -->
@@ -406,7 +435,7 @@
             </div>
             <!-- minat kerja -->
             <div class="tab-pane" id="minat">
-                <table class="table table-striped" width="100%">
+                <table class="table table-striped" width="100%" id="minat_table">
                     <thead>
                         <tr>
                             <th width="15%">Tujuan Kerja</th>
@@ -630,4 +659,5 @@
  <?php 
     
     echo modal($data,'modal_minat','modal_size');
+    echo modal($data_wali,'modal_wali','');
  ?>

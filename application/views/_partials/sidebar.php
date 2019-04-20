@@ -105,11 +105,22 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fa fa-circle-o text-info"></i>
-              <p>Informational</p>
+          <li class="nav-item has-treeview <?php echo active_menu_open('pengiriman'); ?>">
+            <a href="#" class="nav-link <?php echo active_menu('pengiriman',$this->uri->segment(2)); ?>">
+              <i class="nav-icon fa fa-paper-plane"></i>
+              <p>
+                Pengiriman
+                <i class="right fa fa-angle-left"></i>
+              </p>
             </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url('pengiriman'); ?>" class="nav-link <?php echo active_menu('pengiriman',''); ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Pengiriman</p>
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>

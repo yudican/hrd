@@ -23,7 +23,7 @@
       <!-- Notifications Dropdown Menu -->
       <?php if($this->uri->segment(1) == 'dashboard'): ?>
           <li class="nav-item dropdown">
-            <a class="nav-link text-danger" href="<?php echo base_url('logout'); ?>" width="100px" heigt="100px" title="Logout"><i class="fa fa-sign-out" > </i></a>
+            <a class="nav-link text-danger" href="<?php echo base_url('logout'); ?>" width="100px" heigt="100px" title="Logout"><i class="fa fa-sign-out-alt" > </i></a>
           </li>
       <?php endif; ?>
       <li class="nav-item">

@@ -93,7 +93,8 @@
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Simpan</button>
+                    <button type="button" onclick="history.back(1);" class="btn btn-warning"><i class="fa fa-times-circle"></i> Batal</button>
                 </div>
             </div>
         </form>

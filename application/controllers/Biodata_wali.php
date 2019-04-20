@@ -28,12 +28,18 @@ class Biodata_wali extends CI_Controller {
     {
     	$id = $this->uri->segment(4);
      	$insert = $this->wali->store($id);
-   		if ($insert) {
-        $this->session->set_flashdata('pesan', 'data '.$this->uri->segment(2).' berhasil di simpan');
-        redirect(base_url('interview/susunan_anak/input/'.$id));
+   		
+        if (!$this->input->is_ajax_request()) {
+           if ($insert) {
+                $this->session->set_flashdata('pesan', 'data '.$this->uri->segment(2).' berhasil di simpan');
+                redirect(base_url('interview/susunan_anak/input/'.$id));
+            }else{
+                $this->session->set_flashdata('error', 'data '.$this->uri->segment(2).' gagal di simpan');
+                redirect(base_url('interview/wali/input/'.$id));
+            }
         }else{
-            $this->session->set_flashdata('error', 'data '.$this->uri->segment(2).' gagal di simpan');
-            redirect(base_url('interview/wali/input/'.$id));
+            $data['success'] = true;
+            echo json_encode($data);
         }
     }
 }

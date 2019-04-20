@@ -17,6 +17,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
+          <div class="breadcrumb"><?php echo isset($navigasi) ? $navigasi : ''; ?></div>
           <?php if($this->session->flashdata('pesan')): ?>
             <div class="alert alert-success" role="alert">
               <?php echo $this->session->flashdata('pesan'); ?>
@@ -39,7 +40,7 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fa fa-users"></i></span>
+              <span class="info-box-icon bg-info elevation-1"><i class="fa fa-user-clock"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Pelamar Cadangan</span>
@@ -54,7 +55,7 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-google-plus"></i></span>
+              <span class="info-box-icon bg-danger elevation-1"><i class="fab fa-google-plus-g"></i></span>
 
               <div class="info-box-content">
                 <span class="info-box-text">Likes</span>

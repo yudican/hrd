@@ -112,7 +112,7 @@ class Master_upah extends CI_Controller {
     
             if ($this->form_validation->run() == FALSE) {
                 $data = [
-                    'title' => 'input upah',
+                    'title' => 'Update upah',
                     'isi' => 'master/master_upah_input',
                     'row' => $this->master->getUpah($id)
                 ];

@@ -9,6 +9,7 @@ class Dashboard extends CI_Controller {
         parent:: __construct();
         $this->load->model('Login_model','login');
         $this->load->helper('input');
+        $this->load->library('breadcrumb');
         if (!$this->session->userdata('is_login') == true) {
             redirect('login');
         }
@@ -16,28 +17,20 @@ class Dashboard extends CI_Controller {
 
     public function index()
     {
+        
         $data = [
             'title' => 'dashboard',
             'isi' => 'dashboard',
-            'total' => $this->db->get_where('biodata_interview',['interview_status' => 'Cadangan'])->num_rows(),
+            'total' => $this->db->get_where('biodata_interview',['interview_status' => 'Cadangan'])->num_rows()
         ];
         $this->load->view('index', $data);
     }
     public function cek()
     {
-       $data = array(
-            array(
-                'nama' => 'satu',
-                'nama2' => 'dua'
-            ),
-             array(
-                'nama' => 'satu',
-                'form2' => 'dua'
-            )
-       );
-       foreach ($data as $tas) {
-          echo $tas['nama'];
-       }
+          // echo $this->breadcrumb->add('Dashboard', base_url());
+          // $this->breadcrumb->output();  
+
+          
     }
         
 }

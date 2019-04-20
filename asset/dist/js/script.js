@@ -395,10 +395,13 @@ $('.modal-footer').on('click','#simpan',function(e){
       type:'post',
       data:$('#form_modal_minat').serialize(),
       dataType:'json',
-      success:function(res){
+      success:function(res,data){
+        var html ='';
         if (res.success == true) {
         	toastr.success('Successfully Inserted Post!', 'Success Alert', {timeOut: 5000});
         	$('#modal_minat').modal('hide');
+          // $("#minat_table").load();
+          $('#minat_table').load(document.URL + ' #minat_table');
         }else{
         	alert('error');
         }
@@ -409,6 +412,51 @@ $('.modal-footer').on('click','#simpan',function(e){
     })
 });
 
+
+//menampilkan modal wali ayah
+$(document).on('click','#btn_wali',function () {
+    $('#modal_wali').modal('show');
+    var id = $(this).data('id');
+    $('#modal_title').text('Update Data Wali');
+    $('#wali_ayah_nama').val($(this).data('nama'));
+    $('#wali_ayah_umur').val($(this).data('umur'));
+    $('#wali_ayah_alamat').val($(this).data('alamat'));
+    $('#wali_ayah_hp').val($(this).data('hp'));
+    $('#wali_ayah_pekerjaan').val($(this).data('pekerjaan'));
+    $('#wali_ayah_bidang_jabatan').val($(this).data('bidang'));
+    // ibu
+    $('#wali_ibu_nama').val($(this).data('namaibu'));
+    $('#wali_ibu_umur').val($(this).data('umuribu'));
+    $('#wali_ibu_alamat').val($(this).data('alamatibu'));
+    $('#wali_ibu_hp').val($(this).data('hpibu'));
+    $('#wali_ibu_pekerjaan').val($(this).data('pekerjaanibu'));
+    $('#wali_ibu_bidang_jabatan').val($(this).data('bidangibu'));
+    $('.modal-footer').find('#simpan').replaceWith('<button id="simpan_wali" type="button" data-id="'+id+'" class="btn btn-primary ">Simpan</button>');
+});
+$('.modal-footer').on('click','#simpan_wali',function(e){
+  e.preventDefault();
+    var id = $(this).data('id');
+    $.ajax({
+      url:base_url+'interview/wali/simpan/'+id,
+      type:'post',
+      data:$('#form_modal_wali').serialize(),
+      dataType:'json',
+      success:function(res,data){
+        var html ='';
+        if (res.success == true) {
+          toastr.success('Successfully Inserted Post!', 'Success Alert', {timeOut: 5000});
+          $('#modal_wali').modal('hide');
+          // $("#minat_table").load();
+          $('#wali_table').load(document.URL + ' #wali_table');
+        }else{
+          alert('error');
+        }
+      },
+      error:function(){
+        toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
+      }
+    })
+});
 
 
 

@@ -35,7 +35,7 @@
        var table = $("#tabel_interview_pengiriman").dataTable({
            "bProcessing": false,
            "bServerSide": true,
-           "sAjaxSource": "<?php echo site_url('interview/pengiriman/get'); ?>",
+           "sAjaxSource": "<?php echo site_url('pengiriman/get'); ?>",
            "fnRowCallback": function( nRow, aoData, iDisplayIndex ) {
                var index = iDisplayIndex +1;
                $('td:eq(0)',nRow).html(index);

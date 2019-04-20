@@ -18,7 +18,8 @@ class Interview_pengiriman extends CI_Controller {
     {
          $data = [
              'title' => 'INTERVIEW PENGIRIMAN | HRD',
-             'isi' => 'interview/interview_pengiriman'
+             'isi' => 'interview/interview_pengiriman',
+             'cabang' => $this->db->get('tabel_cabang')->result(),
          ];
          $this->load->view('index', $data);
     }

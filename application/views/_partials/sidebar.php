@@ -97,12 +97,6 @@
                   <p>interview</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="<?php echo base_url('interview/pengiriman'); ?>" class="nav-link <?php echo active_menu('interview','pengiriman'); ?>">
-                  <i class="fa fa-circle-o nav-icon"></i>
-                  <p>Pengiriman</p>
-                </a>
-              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview <?php echo active_menu_open('pengiriman'); ?>">

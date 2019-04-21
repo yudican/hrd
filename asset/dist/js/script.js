@@ -463,7 +463,7 @@ $('.modal-footer').on('click','#simpan_wali',function(e){
 //form pengiriman
 $('.modal-footer').on('click','#simpan_pengiriman',function(){
     $.ajax({
-      url:base_url+'interview/pengiriman/input',
+      url:base_url+'pengiriman/input',
       type:'post',
       data:$('#form_pengiriman').serialize(),
       dataType:'json',
@@ -498,3 +498,70 @@ $('.modal-footer').on('click','#simpan_pengiriman',function(){
       }
     })
 });
+
+
+// pengiriman batal
+$(document).on('click','.btn_dibatalkan',function () {
+    $('#modal_batal').modal('show');
+
+    var id = $(this).data('id');
+    $('.modal-footer').find('#btn_batal').replaceWith('<button type="button" class="btn btn-primary" data-id="'+id+'" id="btn_batal">Ya, Batalkan</button>');
+});
+$('.modal-footer').on('click','#btn_batal',function(e){
+  e.preventDefault();
+    var id = $(this).data('id');
+    $.ajax({
+      url:base_url+'pengiriman/batal/'+id,
+      type:'post',
+      data:{status : 'BATAL'},
+      dataType:'json',
+      success:function(res,data){
+        if (res.success == true) {
+          toastr.success('Successfully Inserted Post!', 'Success Alert', {timeOut: 5000});
+          $('#modal_batal').modal('hide');
+          // $("#minat_table").load();
+          $('#tabel_interview_pengiriman').DataTable().ajax.reload();
+        }else{
+          alert('error');
+        }
+      },
+      error:function(){
+        toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
+      }
+    })
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

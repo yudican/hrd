@@ -99,6 +99,20 @@ class Interview_pengiriman extends CI_Controller {
         }
         echo json_encode($data);
     }
+    public function batal()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        $id = $this->uri->segment(3);
+        $request = ['pengiriman_status' => $this->input->post('status')];
+        $update = $this->db->update('tabel_pengiriman', $request,['pengiriman_id' => $id]);
+        if ($update) {
+          $data = array('success' => true);
+        }
+        
+        echo json_encode($data);
+    }
     
 }
         

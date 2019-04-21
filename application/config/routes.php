@@ -91,6 +91,7 @@ $route['interview/detail/(:num)'] = 'interview_cadangan/lihat/$1';
 $route['pengiriman/input'] = 'interview_cadangan/pengiriman';
 $route['pengiriman'] = 'interview_pengiriman';
 $route['pengiriman/get'] = 'interview_pengiriman/getPengiriman';
+$route['pengiriman/batal/(:num)'] = 'interview_pengiriman/batal/$1';
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

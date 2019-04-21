@@ -18,9 +18,9 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="staticEmail" placeholder="Enter Tempat lahir" class="col-sm-2 col-form-label">Tempat Lahir <sup><font color="red">*</font></sup></label>
+                <label for="staticEmail" class="col-sm-2 col-form-label">Tempat Lahir <sup><font color="red">*</font></sup></label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" value="<?php echo (isset($row->biodata_tempat_lahir)) ? $row->biodata_tempat_lahir : set_value('biodata_tempat_lahir'); ?>" name="biodata_tempat_lahir">
+                    <input type="text" placeholder="Enter Tempat lahir" class="form-control" value="<?php echo (isset($row->biodata_tempat_lahir)) ? $row->biodata_tempat_lahir : set_value('biodata_tempat_lahir'); ?>" name="biodata_tempat_lahir">
                     <small class="text-danger"><?php echo form_error('biodata_tempat_lahir'); ?></small>
                 </div>
                 <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal Lahir <sup><font color="red">*</font></sup></label>

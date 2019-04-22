@@ -57,7 +57,7 @@ class Interview_pengiriman extends CI_Controller {
          $this->datatables->edit_column('pengiriman_tanggal','$1','tgl_indo(pengiriman_tanggal)');
          // $this->datatables->add_column('nomor','1');
          $this->datatables->add_column('cetak','<a href="javascript:void(0);" class="btn_cetak btn btn-info btn-sm" data-id="$1"><i class="fa fa-print" title="cetak"></i></a>','biodata_nik');
-          $this->datatables->add_column('actions', '<a href="javascript:void(0);" target="_blank" class="pengiriman_edit btn btn-primary btn-sm" data-id="$1" data-nik="$2" data-tanggal="$6" data-keterangan="$8" data-cabang="$9" data-bagian="$11" data-jam="$10"><i class="fa fa-edit" title="edit pengiriman"></i></a> <a href="javascript:void(0);" class="btn_diterima btn btn-success btn-sm" data-id="$1"><i class="fa fa-check-square" title="di terima"></i></a>  <a href="javascript:void(0);" class="btn_dibatalkan btn btn-danger btn-sm" data-id="$1"><i class="fa fa-times-circle" title="di batalkan"></i></a> <a href="javascript:void(0);" class="btn_ditolak btn btn-warning btn-sm" data-id="$1" title="di tolak"><i class="fa fa-user-times"></i></a>','pengiriman_id,biodata_nik,biodata_nama,nama_cabang,nama_bagian,pengiriman_tanggal,pengiriman_status,pengiriman_keterangan,pengiriman_cabang,pengiriman_jam,pengiriman_bagian,nomor,actions');
+          $this->datatables->add_column('actions', '<a href="javascript:void(0);" class="pengiriman_edit btn btn-primary btn-sm" data-id="$1" data-nik="$2" data-tanggal="$6" data-keterangan="$8" data-cabang="$9" data-bagian="$11" data-jam="$10"><i class="fa fa-edit" title="edit pengiriman"></i></a> <a href="javascript:void(0);" class="btn_diterima btn btn-success btn-sm" data-id="$1"><i class="fa fa-check-square" title="di terima"></i></a>  <a href="javascript:void(0);" class="btn_dibatalkan btn btn-danger btn-sm" data-id="$1"><i class="fa fa-times-circle" title="di batalkan"></i></a> <a href="javascript:void(0);" class="btn_ditolak btn btn-warning btn-sm" data-id="$1" title="di tolak"><i class="fa fa-user-times"></i></a>','pengiriman_id,biodata_nik,biodata_nama,nama_cabang,nama_bagian,pengiriman_tanggal,pengiriman_status,pengiriman_keterangan,pengiriman_cabang,pengiriman_jam,pengiriman_bagian,nomor,actions');
  
         echo $this->datatables->generate('json','');
     }
@@ -176,7 +176,7 @@ class Interview_pengiriman extends CI_Controller {
         // dapatkan output html
         // $html = $this->output->get_output();
         $data = array('data' => $this->load->view('pengiriman/cetak/cetak_pengiriman',$data,true));
-        $this->pdf_report->setPaper('A4', 'lanscape');
+        $this->pdf_report->setPaper('A4', 'potrait');
         $this->pdf_report->filename = $nama.".pdf";
         $this->pdf_report->load_view('pengiriman/cetak/cetak_pengiriman', $data);
         // atau jika tidak ingin menampilkan (tanpa) preview di halaman browser

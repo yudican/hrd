@@ -5,22 +5,19 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body table-responsive">
-      <?php echo form_open('#',array('class' =>'form-inline float-right', 'id' => 'form_cari')) ?>
+      <?php echo form_open(base_url('pengiriman/cetak/cabang'),array('class' =>'form-inline float-right', 'id' => 'form_cetak','target' => '_blank')) ?>
             <div class="form-group mb-2 mx-auto">
                 <select name="cabang" id="cabang" class="form-control">
                     <option value="">Pilih Cabang</option>
                     <?php foreach($cabang as $results): ?>
-                        <option value="<?php echo $results->nama_cabang; ?>"><?php echo $results->nama_cabang; ?></option>
+                        <option value="<?php echo $results->id_cabang; ?>"><?php echo $results->nama_cabang; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
             <div class="form-group mx-sm-3 mb-2">
                 <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Filter ">
             </div>
-            <!-- <div class="form-group mx-sm-3 mb-2">
-                <input type="text" class="form-control" name="filter_nama" id="filter_nama" placeholder="Filter Nama">
-            </div> -->
-            <button type="button" id="cari" class="btn btn-primary mb-2"><i class="fa fa-print"></i></button>
+            <button type="submit" id="cari" class="btn btn-primary mb-2"><i class="fa fa-print"></i></button>
         </form>
         <table class="table table-striped" width="100%" style="font-size: 12px;" id="tabel_interview_pengiriman">
         

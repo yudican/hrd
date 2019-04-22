@@ -40,14 +40,14 @@ class Interview_pengiriman extends CI_Controller {
          $this->datatables->from('tabel_pengiriman');
 
          if ($this->input->post('cabang') == $this->input->post('cabang') && $this->input->post('tanggal')) {
-            $this->datatables->like('nama_cabang', $this->input->post('cabang'));
+            $this->datatables->like('pengiriman_cabang', $this->input->post('cabang'));
             $this->datatables->like('pengiriman_tanggal', $this->input->post('tanggal'));
-            $this->datatables->or_like('nama_cabang', $this->input->post('cabang'));
+            $this->datatables->or_like('pengiriman_cabang', $this->input->post('cabang'));
             $this->datatables->like('pengiriman_tanggal', $this->input->post('tanggal'));
         }
         
         if ($this->input->post('cabang')) {
-            $this->datatables->like('nama_cabang', $this->input->post('cabang'));
+            $this->datatables->like('pengiriman_cabang', $this->input->post('cabang'));
         }else if ($this->input->post('tanggal')) {
             $this->datatables->like('pengiriman_tanggal', $this->input->post('tanggal'));
             $this->datatables->or_like('pengiriman_tanggal', $this->input->post('tanggal'));
@@ -181,6 +181,24 @@ class Interview_pengiriman extends CI_Controller {
         $this->pdf_report->load_view('pengiriman/cetak/cetak_pengiriman', $data);
         // atau jika tidak ingin menampilkan (tanpa) preview di halaman browser
         // $this->dompdf->stream("welcome.pdf");
+        
+    }
+    public function cetak_cabang()
+    {
+        $this->load->library('pdf_report');
+        $cabang = $this->input->post('cabang');
+        $tanggal = $this->input->post('tanggal');
+        $data = [
+                'tampil' => $this->pengiriman->cetak_percabang_kop($cabang,$tanggal)->row_array(),
+                'results' => $this->pengiriman->cetak_percabang_kop($cabang,$tanggal)->result_array()
+            ];
+        $nama = $data['tampil']['nama_cabang'];
+        // dapatkan output html
+        // $html = $this->output->get_output();
+        $data = array('data' => $this->load->view('pengiriman/cetak/cetak_pengiriman',$data,true));
+        $this->pdf_report->setPaper('A4', 'potrait');
+        $this->pdf_report->filename = $nama.".pdf";
+        $this->pdf_report->load_view('pengiriman/cetak/cetak_pengiriman_percabang', $data,TRUE);
         
     }
 }

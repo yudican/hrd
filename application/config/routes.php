@@ -94,6 +94,7 @@ $route['pengiriman/get'] = 'interview_pengiriman/getPengiriman';
 $route['pengiriman/batal/(:num)'] = 'interview_pengiriman/batal/$1';
 $route['pengiriman/update/(:num)'] = 'interview_pengiriman/update/$1';
 $route['pengiriman/cetak/(:num)'] = 'interview_pengiriman/cetak/$1';
+$route['pengiriman/cetak/cabang'] = 'interview_pengiriman/cetak_cabang';
 $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

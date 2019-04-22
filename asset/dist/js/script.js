@@ -532,6 +532,43 @@ $('.modal-footer').on('click','#btn_batal',function(e){
 });
 
 
+//update pengiriman
+$(document).on('click','.pengiriman_edit',function () {
+    $('#pengiriman_update').modal('show');
+
+    var id = $(this).data('id');
+    $('#pengiriman_nik').val($(this).data('nik'));
+    $('#pengiriman_cabang').val($(this).data('cabang'));
+    $('#pengiriman_bagian').val($(this).data('bagian'));
+    $('#pengiriman_jam').val($(this).data('jam'));
+    $('#pengiriman_keterangan').val($(this).data('keterangan'));
+    $('.modal-footer').find('#update_pengiriman').replaceWith('<button type="button" class="btn btn-primary" data-id="'+id+'" id="update_pengiriman">Simpan Perubahan</button>');
+});
+$('.modal-footer').on('click','#update_pengiriman',function(e){
+  e.preventDefault();
+    var id = $(this).data('id');
+    $.ajax({
+      url:base_url+'pengiriman/update/'+id,
+      type:'post',
+      data:$('#form_pengiriman_update').serialize(),
+      dataType:'json',
+      success:function(res){
+        if (res.success == true) {
+          toastr.success('Successfully Update Post!', 'Success Alert', {timeOut: 5000});
+          $('#pengiriman_update').modal('hide');
+          // $("#minat_table").load();
+          $('#tabel_interview_pengiriman').DataTable().ajax.reload();
+        }else{
+          alert('error');
+        }
+      },
+      error:function(){
+        toastr.error('Errors Was Post Data!', 'Errors Alert', {timeOut: 5000});
+      }
+    })
+});
+
+
 
 
 
